@@ -31,7 +31,9 @@ jobs:
             echo "$GIT_ORG" > .github_orgname
             echo "$TG_TOKEN" > .tg_token
             echo "$CHAT_ID" > .tg_chat
-            ./dumper.sh "$FILEURL"
+            curl -sL https://gist.github.com/rokibhasansagar/cf8669411a1a57ba40c3090cd5146cd9/raw/keepalive.sh -O && chmod a+x ./keepalive.sh
+            ./keepalive.sh & ./dumper.sh "$FILEURL"
+            kill -s SIGTERM $(cat /tmp/keepalive.pid) 2>/dev/null || true
 workflows:
   workstation:
     jobs:
