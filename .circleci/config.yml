@@ -27,6 +27,7 @@ jobs:
           name: Dump << pipeline.parameters.fileurl >>
           command: |
             cd /home/phoenix_dumper
+            pip3 install future requests humanize clint backports.lzma lz4 zstandard protobuf pycryptodome docopt 2>/dev/null
             echo "$GITHUB_TOKEN" > .github_token
             echo "$GIT_ORG" > .github_orgname
             echo "$TG_TOKEN" > .tg_token
